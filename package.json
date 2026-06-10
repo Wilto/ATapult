@@ -1,7 +1,7 @@
 {
-  "name": "wil.to",
-  "version": "2.0",
-  "description": "My website.",
+  "name": "ATapult",
+  "version": "0.0.1",
+  "description": "A script that generates Standard.Site records from Markdown files, allowing you to syndicate your Markdown-powered website across the ATmosphere.",
   "author": "Mat Wilto Marquis",
   "license": "MIT",
   "type": "module",
@@ -9,34 +9,15 @@
     "node": ">=20.x.x"
   },
   "scripts": {
-    "clean": "rimraf dist src/_includes/css src/_includes/scripts",
-    "clean:og": "rimraf src/assets/og-images",
-    "atproto": "if [ -f .env ]; then node --env-file=./.env ./atproto/records.js; else node ./atproto/records.js; fi",
-    "favicons": "node ./src/_config/setup/generate-favicons.js",
-    "colors": "node ./src/_config/setup/create-colors.js",
-    "screenshots": "node ./src/_config/setup/generate-screenshots.js",
-    "dev:11ty": "cross-env ELEVENTY_ENV=development eleventy --serve --incremental",
-    "build:11ty": "cross-env ELEVENTY_ENV=production eleventy",
-    "components:create": "node src/_util/code-sample-generator.cjs -b 'components'",
-    "wireframes:create": "node src/_util/code-sample-generator.cjs -b 'wireframes'",
-    "start": "npm run dev:11ty",
-    "build": "npm run clean && npm run atproto && npm run build:11ty",
-    "pa11y:build": "npm run clean && cross-env ELEVENTY_ENV=test eleventy",
-    "pa11y:test": "sleep 3 && pa11y-ci --config ./dist/pa11y.json",
-    "pa11y:serve": "ELEVENTY_ENV=test eleventy --serve --ignore-initial",
-    "test:a11y": "npm run pa11y:build && (npm run pa11y:serve &) && sleep 5 && npm run pa11y:test",
-    "newsletters": "node ./src/_config/events/sync-newsletters.js"
   },
   "keywords": [],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Wilto/w-new"
+    "url": "https://github.com/Wilto/ATapult"
   },
   "dependencies": {
     "@atproto/api": "^0.20.10",
-    "@atcute/tid": "^1.1.2"
-  },
-  "devDependencies": {
+    "@atcute/tid": "^1.1.2",
     "chalk": "^4.1.2"
   }
 }
