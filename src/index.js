@@ -41,9 +41,15 @@ export const createOrUpdateStandardSite = async (
 
   const validateAndAddDocumentRkeys = ( docs ) => {
     for (const doc of docs) {
-      if( !doc.publishedAt ) throw Error(`publishedAt not found for doc ${ doc.path }`);
-      if( !doc.path ) throw Error(`path not found for doc ${ doc.title || JSON.stringify(doc)}`);
-      if( !doc.title ) throw Error(`title not found for doc ${ doc.path }`);
+      if( !doc.publishedAt ) {
+        throw Error(`publishedAt not found for doc ${ doc.path }`);
+      }
+      if( !doc.path ) {
+        throw Error(`path not found for doc ${ doc.title || JSON.stringify(doc)}`);
+      }
+      if( !doc.title ) {
+        throw Error(`title not found for doc ${ doc.path }`);
+      }
 
       doc.rkey = rkeyFromDateString( doc.publishedAt );
     }
@@ -79,7 +85,7 @@ ${ pub.publishedAt === undefined && console.log( `Without a \`publishedAt\`, the
 
 ${ chalk.bold( `Documents` ) }
 ${ newDocs.map( ( d ) => {
-  return `${ chalk.blue( rkeyFromDateString( d.publishedAt ).toString() ) } ${ chalk.dim( pub.url ) }${ d.path }`
+  return `${ chalk.blue( rkeyFromDateString( d.publishedAt ).toString() ) } ${ chalk.dim( pub.url ) }${ d.path }`;
 }).join( "\n" ) }
 
 Are all the above paths correct? (y/n)
@@ -98,7 +104,7 @@ ${ addLinkText }
     }
   } else {
     console.log( `.well-known file found at ${ wellKnown }` );
-    const tid = pub.rkey || ( pub.publishedAt ? CreateTID( pub.publishedAt.getTime(), 512 ) : GenerateTID() )
+    const tid = pub.rkey || ( pub.publishedAt ? CreateTID( pub.publishedAt.getTime(), 512 ) : GenerateTID() );
 
     await createOrUpdatePublication( agent, { ...pub, rkey: tid } );
     if( !pub.rkey && ! pub.publishedAt ) {

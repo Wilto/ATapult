@@ -1,0 +1,7 @@
+{
+  "esversion" : 11,
+  "maxerr": 100,
+  "indent": 2,
+  "curly": true,
+  "eqeqeq": true
+}
