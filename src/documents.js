@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import chalk from "chalk";
 
 const getDocuments = async (agent, publicationUri) => {
   const docs = await agent.com.atproto.repo.listRecords({

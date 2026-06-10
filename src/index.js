@@ -4,7 +4,7 @@ import { dirname } from "node:path";
 import { stdin, stdout } from "node:process";
 import { createInterface } from "node:readline/promises";
 import { Agent, CredentialSession } from "@atproto/api";
-import { create as CreateTID, now as GenerateTID } from '@atcute/tid';
+import { create as CreateTID, now as GenerateTID } from "@atcute/tid";
 
 import { createOrUpdatePublication } from "./publication.js";
 import { createOrUpdateDocuments } from "./documents.js";
@@ -127,7 +127,7 @@ export const ATapult = async ( config, publicationRecord, documentRecords ) => {
     console.error( `ATProto sync failed.
   Error ${ error.status }` );
 
-    if( process.env.CI || process.env.NETLIFY === 'true' ) {
+    if( process.env.CI ) {
       console.warn( 'Skipping ATProto sync during build' );
       process.exit( 0 );
     }
