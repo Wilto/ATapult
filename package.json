@@ -9,15 +9,24 @@
     "node": ">=20.x.x"
   },
   "scripts": {
+    "build": "npx esbuild ./src/*.js --platform=node --outdir=./dist/ --watch"
   },
+  "files": [ "dist" ],
   "keywords": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/Wilto/ATapult"
   },
   "dependencies": {
-    "@atproto/api": "^0.20.10",
     "@atcute/tid": "^1.1.2",
+    "@atproto/api": "^0.20.10",
     "chalk": "^4.1.2"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.0",
+    "npm-watch": "^0.13.0"
   }
 }
