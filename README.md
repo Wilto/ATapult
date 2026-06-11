@@ -3,24 +3,8 @@ _With credit to [@eaton](https://github.com/eaton) for the name._
 
 A script that generates (or updates) [Standard.Site](https://standard.site/) records, allowing you to syndicate your website across the ATmosphere. 
 
-<img src="./screenshot.jpg" alt="wilto@blues: ~/Sites/w-new on main
-$ npm run --silent atproto
-.well-known file found at ./src/.well-known/site.standard.publication/posts/index.html
 
-Publication
-223nhvhpe22k2 https://wil.to/posts already exists.
-
-Documents
-223numciw22k2 /automating-standard-site/ already exists.
-223nu7gjd22k2 /standard-site/ already exists.
-223nt3exb22k2 /llemdashes/ already exists.
-223nsyskk22k2 /megamanathon-2/ already exists.
-223nrxdf722k2 /googles-prompt-api/ already exists.
-223nh6c4v22k2 /interesting-times/ already exists.
-223my7e7722k2 /the-cloffice/ already exists.
-223mdwi2322k2 /switching-to-a-framework-and-ubuntu/ already exists.
-
-Published successfully.">
+<img src="./screenshot.jpg" alt="wilto@blues: ~/Sites/w-new on main $ npm run --silent atproto .well-known file found at ./src/.well-known/site.standard.publication/posts/index.html Publication 223nhvhpe22k2 https://wil.to/posts already exists. Documents 223numciw22k2 /automating-standard-site/ already exists. 223nu7gjd22k2 /standard-site/ already exists. 223nt3exb22k2 /llemdashes/ already exists. 223nsyskk22k2 /megamanathon-2/ already exists. 223nrxdf722k2 /googles-prompt-api/ already exists. 223nh6c4v22k2 /interesting-times/ already exists. 223my7e7722k2 /the-cloffice/ already exists. 223mdwi2322k2 /switching-to-a-framework-and-ubuntu/ already exists. Published successfully.">
 
 Be sure to check out [Implementing Standard.Site](https://wil.to/posts/standard-site/) for the general idea, use cases, and manual record-creation process, just to get your bearings, and eep [PDSIs](https://pdsls.dev/) and the [Standard.Site Validator](https://site-validator.fly.dev/) handy to validate your results. Provide it with your [PDS credentials](https://atproto.com/guides/self-hosting#pds), a [Publication record](https://github.com/Wilto/ATapult/blob/main/example/update-records.js#L24), and your [Document records](https://github.com/Wilto/ATapult/blob/main/example/update-records.js#L44), like so:
 
