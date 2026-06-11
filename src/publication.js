@@ -8,7 +8,7 @@ const themeKeys = [
   "accentForeground",
 ];
 
-const getPublication = async (agent, rkey) => {
+const getPublication = async( agent, rkey ) => {
   try {
     const pub = await agent.com.atproto.repo.getRecord({
       repo: agent.did,
@@ -17,7 +17,7 @@ const getPublication = async (agent, rkey) => {
     });
     return pub.data.value;
   } catch (e) {
-    if (e.error === "RecordNotFound") {
+    if( e.error === "RecordNotFound" ) {
       return;
     } else {
       throw e;
@@ -25,7 +25,7 @@ const getPublication = async (agent, rkey) => {
   }
 };
 
-const pushPublication = async (agent, action, pub) => {
+const pushPublication = async ( agent, action, pub ) => {
   const theme = pub.basicTheme;
   const basicTheme = theme ? {
     "$type": "site.standard.theme.basic",
@@ -35,7 +35,7 @@ const pushPublication = async (agent, action, pub) => {
   } : undefined;
   let icon;
 
-  if (pub.icon && "blob" in pub.icon) {
+  if( pub.icon && "blob" in pub.icon ) {
     const res = await agent.com.atproto.repo.uploadBlob(
       new Uint8Array(pub.icon.blob),
       { encoding: pub.icon.mimeType },
@@ -52,7 +52,7 @@ const pushPublication = async (agent, action, pub) => {
     icon = pub.icon;
   }
 
-  const res = await agent.com.atproto.repo[action]({
+  const res = await agent.com.atproto.repo[ action ]({
     repo: agent.did,
     collection: "site.standard.publication",
     rkey: pub.rkey,
