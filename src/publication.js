@@ -1,7 +1,6 @@
 import chalk from "chalk";
 import { Buffer } from "node:buffer";
 
-
 const themeKeys = [
   "background",
   "foreground",
