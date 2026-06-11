@@ -19,7 +19,7 @@ await ATapult({
 }, publicationRecord, documentRecords );
 ```
 
-Have a look at [the example](/Wilto/ATapult/blob/main/example/update-records.js) to see how I'm using it on my website, which is: grab all the Markdown files from a directory, parse out their frontmatter, filter out any marked as a draft or a post that just links to an external article, and publish ’em.
+Have a look at [the example](https://github.com/Wilto/ATapult/blob/main/example/update-records.js) to see how I'm using it on my website, which is: grab all the Markdown files from a directory, parse out their frontmatter, filter out any marked as a draft or a post that just links to an external article, and publish ’em.
 
 First, you need credentials for either the Personal Data Server (PDS) provided by Bluesky (you can look yourself up on https://pdsls.dev) or [your own](https://github.com/Wilto/ATapult/blob/main/example/update-records.js#L67). If you're using Bluesky's server, you can generate an app password at https://bsky.app/settings/app-passwords. Add said password to  `ATPROTO_PASSWORD=[xxxx-xxxx-xxxx-xxxx]` in your `.env` file, _which never leaves your local development environment in any way, **right**?_
 
