@@ -10,8 +10,8 @@
   },
   "scripts": {
     "build": "npx esbuild ./src/*.js --platform=node --outdir=./dist/ --watch",
-    "hint" : "npx jshint ./src/*.js",
-    "lint" : "npx eslint ./src/*.*"
+    "hint" : "npx jshint ./src/*.js ./example/*.js",
+    "lint" : "npx eslint ./src/*.js ./example/*.js"
   },
   "files": [
     "dist"
