@@ -3,7 +3,7 @@ _With credit to [@eaton](https://github.com/eaton) for the name._
 
 A script that generates (or updates) [Standard.Site](https://standard.site/) records, allowing you to syndicate your website across the ATmosphere. 
 
-!['wilto@blues: ~/Sites/w-new on main[!]
+<img src="./screenshot.jpg" alt="wilto@blues: ~/Sites/w-new on main
 $ npm run --silent atproto
 .well-known file found at ./src/.well-known/site.standard.publication/posts/index.html
 
@@ -20,7 +20,7 @@ Documents
 223my7e7722k2 /the-cloffice/ already exists.
 223mdwi2322k2 /switching-to-a-framework-and-ubuntu/ already exists.
 
-Published successfully.'](./screenshot.jpg)
+Published successfully.">
 
 Be sure to check out [Implementing Standard.Site](https://wil.to/posts/standard-site/) for the general idea, use cases, and manual record-creation process, just to get your bearings, and eep [PDSIs](https://pdsls.dev/) and the [Standard.Site Validator](https://site-validator.fly.dev/) handy to validate your results. Provide it with your [PDS credentials](https://atproto.com/guides/self-hosting#pds), a [Publication record](https://github.com/Wilto/ATapult/blob/main/example/update-records.js#L24), and your [Document records](https://github.com/Wilto/ATapult/blob/main/example/update-records.js#L44), like so:
 
