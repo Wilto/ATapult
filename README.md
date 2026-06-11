@@ -1,7 +1,7 @@
 # ATapult
-_Credit to [@eaton](https://github.com/eaton) for the name._
+_Credit to [@mastrojs/atproto](https://github.com/mastrojs/atproto) for the inspiration, in both the macro and the micro — check it out if you're more TypeScript inclined. Credit [@eaton](https://github.com/eaton) for the name._
 
-A script that generates (or updates) [Standard.Site](https://standard.site/) records, allowing you to syndicate your website across the ATmosphere. 
+ATapult is a script that generates (or updates) [Standard.Site](https://standard.site/) records for you, allowing you to syndicate your website across the ATmosphere. 
 
 <img src="./screenshot.jpg" alt="wilto@blues: ~/Sites/w-new on main $ npm run --silent atproto .well-known file found at ./src/.well-known/site.standard.publication/posts/index.html Publication 223nhvhpe22k2 https://wil.to/posts already exists. Documents 223numciw22k2 /automating-standard-site/ already exists. 223nu7gjd22k2 /standard-site/ already exists. 223nt3exb22k2 /llemdashes/ already exists. 223nsyskk22k2 /megamanathon-2/ already exists. 223nrxdf722k2 /googles-prompt-api/ already exists. 223nh6c4v22k2 /interesting-times/ already exists. 223my7e7722k2 /the-cloffice/ already exists. 223mdwi2322k2 /switching-to-a-framework-and-ubuntu/ already exists. Published successfully.">
 
