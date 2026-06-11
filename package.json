@@ -1,7 +1,7 @@
 {
   "name": "atapult",
-  "version": "0.0.2",
-  "description": "A script that generates Standard.Site records from Markdown files, allowing you to syndicate your Markdown-powered website across the ATmosphere.",
+  "version": "0.0.3",
+  "description": "ATapult is a script that generates (or updates) Standard.Site records for you, allowing you to syndicate your website across the ATmosphere.",
   "author": "Mat Wilto Marquis",
   "license": "MIT",
   "type": "module",
