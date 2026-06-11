@@ -1,5 +1,5 @@
 # ATapult
-_Credit to [@mastrojs/atproto](https://github.com/mastrojs/atproto) for the inspiration, in both the macro and the micro — check it out if you're more TypeScript inclined. Credit [@eaton](https://github.com/eaton) for the name._
+_Credit to [@mastrojs/atproto](https://github.com/mastrojs/atproto) for the inspiration, in both the macro and the micro — check it out if you're more TypeScript inclined. Credit to [@eaton](https://github.com/eaton) for the name._
 
 ATapult is a script that generates (or updates) [Standard.Site](https://standard.site/) records for you, allowing you to syndicate your website across the ATmosphere. 
 

@@ -1,6 +1,6 @@
 {
-  "name": "ATapult",
-  "version": "0.0.1",
+  "name": "atapult",
+  "version": "0.0.2",
   "description": "A script that generates Standard.Site records from Markdown files, allowing you to syndicate your Markdown-powered website across the ATmosphere.",
   "author": "Mat Wilto Marquis",
   "license": "MIT",
@@ -29,6 +29,11 @@
   "exports": {
     ".": "./dist/index.js"
   },
+  "keywords": [
+    "atproto",
+    "at protocol",
+    "standard.site"
+  ],
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "esbuild": "^0.28.0",
