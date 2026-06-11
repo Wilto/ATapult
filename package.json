@@ -9,7 +9,9 @@
     "node": ">=20.x.x"
   },
   "scripts": {
-    "build": "npx esbuild ./src/*.js --platform=node --outdir=./dist/ --watch"
+    "build": "npx esbuild ./src/*.js --platform=node --outdir=./dist/ --watch",
+    "hint" : "npx jshint ./src/*.js",
+    "lint" : "npx eslint ./src/*.*"
   },
   "files": [
     "dist"
@@ -28,7 +30,10 @@
     ".": "./dist/index.js"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "esbuild": "^0.28.0",
+    "eslint": "^10.4.1",
+    "globals": "^17.6.0",
     "jshint": "^2.13.6",
     "npm-watch": "^0.13.0"
   }

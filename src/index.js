@@ -1,7 +1,7 @@
 import fs from "fs";
 import { readFile } from "node:fs/promises";
 import { dirname } from "node:path";
-import { stdin, stdout } from "node:process";
+import { stdin, stdout, process } from "node:process";
 import { createInterface } from "node:readline/promises";
 import { Agent, CredentialSession } from "@atproto/api";
 import { create as CreateTID, now as GenerateTID } from "@atcute/tid";
