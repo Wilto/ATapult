@@ -1,8 +1,7 @@
 import fs from "fs";
 import path from 'path';
-import { glob } from 'glob';
-import { process } from "node:process";
-import { readFile } from "node:fs/promises";
+import process from "node:process";
+import { readFile, glob } from "node:fs/promises";
 import frontmatter from 'front-matter';
 import slugify from 'slugify';
 
@@ -12,9 +11,10 @@ import { ATapult } from 'ATapult';
   const parsedPosts = async ( filePath ) => {
     const directoryPath = process.cwd() + filePath;
     const files = await glob( directoryPath + '**/*.md', { withFileTypes: true });
-    return files.map( file => {
-      const filePath = path.join( file.path, file.name );
-      const content = fs.readFileSync(filePath, 'utf8');
+
+    return Array.fromAsync( files, file => {
+      const filePath = path.join( file.parentPath, file.name );
+      const content = fs.readFileSync (filePath, 'utf8' );
       // Make sure to include the path in the returned object:
       return { ...frontmatter( content ), 'path' : filePath };
     });
