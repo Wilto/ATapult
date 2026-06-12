@@ -129,9 +129,14 @@ export const ATapult = async ( config, publicationRecord, documentRecords ) => {
     const session = new CredentialSession( config.url );
 
     await session.login( config.credentials );
+    if( session.session.active === true ) {
+      console.log( `Connected to ${ chalk.blue( config.url ) }` );
+    }
+
     await createOrUpdateStandardSite( session, publicationRecord, documentRecords, {
       'baseFolder' : './src'
     });
+
   } catch (error) {
     console.error( `ATProto sync failed.
   Error ${ error.status }` );

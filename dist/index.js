@@ -109,6 +109,9 @@ export const ATapult = async (config, publicationRecord, documentRecords) => {
   try {
     const session = new CredentialSession(config.url);
     await session.login(config.credentials);
+    if (session.session.active === true) {
+      console.log(`Connected to ${chalk.blue(config.url)}`);
+    }
     await createOrUpdateStandardSite(session, publicationRecord, documentRecords, {
       "baseFolder": "./src"
     });
