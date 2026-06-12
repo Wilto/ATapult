@@ -22,15 +22,24 @@ function pubUriFromFile(wellKnownFilePath) {
 }
 export const rkeyFromDateString = (timestamp) => CreateTID(new Date(timestamp).getTime(), 512);
 export const createOrUpdateStandardSite = async (session, pub, docs, opts) => {
+  if (pub.url === void 0) {
+    return;
+  }
   const agent = new Agent(session);
   const { pathname } = pub.url;
   const wellKnown = `${opts?.baseFolder || ``}/.well-known/site.standard.publication${pathname === "/" ? `` : `${pathname}/index.html`}`;
   const publicationUri = await pubUriFromFile(wellKnown);
   const validateAndAddDocumentRkeys = (docs2) => {
     for (const doc of docs2) {
-      if (!doc.publishedAt) throw Error(`publishedAt not found for doc ${doc.path}`);
-      if (!doc.path) throw Error(`path not found for doc ${doc.title || JSON.stringify(doc)}`);
-      if (!doc.title) throw Error(`title not found for doc ${doc.path}`);
+      if (!doc.publishedAt) {
+        throw Error(`publishedAt not found for doc ${doc.path}`);
+      }
+      if (!doc.path) {
+        throw Error(`path not found for doc ${doc.title || JSON.stringify(doc)}`);
+      }
+      if (!doc.title) {
+        throw Error(`title not found for doc ${doc.path}`);
+      }
       doc.rkey = rkeyFromDateString(doc.publishedAt);
     }
     return docs2;
@@ -106,7 +115,7 @@ export const ATapult = async (config, publicationRecord, documentRecords) => {
   } catch (error) {
     console.error(`ATProto sync failed.
   Error ${error.status}`);
-    if (process.env.CI || process.env.NETLIFY === "true") {
+    if (process.env.CI) {
       console.warn("Skipping ATProto sync during build");
       process.exit(0);
     }

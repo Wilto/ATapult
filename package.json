@@ -1,6 +1,6 @@
 {
   "name": "atapult",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "ATapult is a script that generates (or updates) Standard.Site records for you, allowing you to syndicate your website across the ATmosphere.",
   "author": "Mat Wilto Marquis",
   "license": "MIT",
@@ -16,7 +16,6 @@
   "files": [
     "dist"
   ],
-  "keywords": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/Wilto/ATapult"

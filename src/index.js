@@ -1,7 +1,7 @@
 import fs from "fs";
 import { readFile } from "node:fs/promises";
 import { dirname } from "node:path";
-import { stdin, stdout, process } from "node:process";
+import { stdin, stdout } from "node:process";
 import { createInterface } from "node:readline/promises";
 import { Agent, CredentialSession } from "@atproto/api";
 import { create as CreateTID, now as GenerateTID } from "@atcute/tid";
@@ -34,6 +34,9 @@ export const createOrUpdateStandardSite = async (
   docs,
   opts
 ) => {
+  if( pub.url === undefined ) {
+    return;
+  }
   const agent = new Agent( session );
   const { pathname } = pub.url;
   const wellKnown = `${ opts?.baseFolder || `` }/.well-known/site.standard.publication${ pathname === "/" ? `` : `${ pathname }/index.html` }`;
