@@ -59,9 +59,7 @@ export const createOrUpdateStandardSite = async (
     return docs;
   };
 
-  docs.sort( (a, b) => a.publishedAt < b.publishedAt ? 1 : -1 );
-
-  const newDocs = validateAndAddDocumentRkeys( docs );
+  const newDocs = Object.keys( docs ).length ? validateAndAddDocumentRkeys( docs ) : [];
   const addLinkText = `Add the following link tags to your publication landing page and document pages:
 
 <link 
