@@ -81,7 +81,7 @@ Are all the above paths correct? (y/n)
     stdin.destroy();
     if (answer.toLowerCase() === "y" || answer.toLowerCase() === "yes") {
       await mkdir(dirname(wellKnown), { recursive: true });
-      await writeFile(wellKnown, `at://${agent.did}/site.standard.publication/${pub.rkey}`);
+      await writeFile(wellKnown, `at://${agent.did}/site.standard.publication/${pubRkey}`);
       console.log(`Successfully wrote ${chalk.green(wellKnown)}.`);
       console.log(`
 Next time you run this script, your publication and documents will be published to the 

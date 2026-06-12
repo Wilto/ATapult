@@ -40,7 +40,7 @@ const pushPublication = async ( agent, action, pub ) => {
       new Uint8Array(pub.icon.blob),
       { encoding: pub.icon.mimeType },
     );
-    console.log( "Uploaded new icon" );
+    console.log( "Uploaded new icon." );
     const { mimeType, ref, size } = res.data.blob;
     icon = {
       $type: "blob",

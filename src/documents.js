@@ -37,6 +37,10 @@ export const createOrUpdateDocuments = async ( agent, publicationUri, docs ) => 
     existingDocs[ oldDoc.rkey ] = oldDoc;
   }
   console.log( chalk.bold( `Documents` ) );
+  if( docs.length === 0 ) {
+    console.log( chalk.dim( `None.` ) );
+  }
+
   for( const newDoc of docs ) {
     const oldDoc = existingDocs[ newDoc.rkey ];
     if( !oldDoc ) {
