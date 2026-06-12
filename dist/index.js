@@ -29,6 +29,7 @@ export const createOrUpdateStandardSite = async (session, pub, docs, opts) => {
   const { pathname } = pub.url;
   const wellKnown = `${opts?.baseDir || ``}/.well-known/site.standard.publication${pathname === "/" ? `` : `${pathname}/index.html`}`;
   const publicationUri = await pubUriFromFile(wellKnown);
+  const pubRkey = pub.rkey || CreateTID(pub.publishedAt.getTime(), 512);
   const validateAndAddDocumentRkeys = (docs2) => {
     for (const doc of docs2) {
       if (!doc.publishedAt) {
@@ -49,13 +50,13 @@ export const createOrUpdateStandardSite = async (session, pub, docs, opts) => {
 
 <link 
   rel="site.standard.publication"
-  href="at://${agent.did}/site.standard.publication/${pub.rkey}">
+  href="at://${agent.did}/site.standard.publication/${pubRkey}">
 
 And add the following to each of your document pages using the corresponding TID values:
 
 <link 
   rel="site.standard.document"
-  href="at://${agent.did}/site.standard.document/[TID]">
+  href="at://${agent.did}/site.standard.document/[rkey]">
 `;
   if (!publicationUri) {
     if (!stdout.isTTY || process.env.CI) {
@@ -63,7 +64,6 @@ And add the following to each of your document pages using the corresponding TID
       process.exit(1);
     }
     const rl = createInterface({ input: stdin, output: stdout });
-    const pubRkey = pub.rkey || CreateTID(pub.publishedAt.getTime(), 512);
     const answer = await rl.question(`
 Generating a .well-known file.
 ${chalk.bold(`Publication`)}

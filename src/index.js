@@ -41,6 +41,7 @@ export const createOrUpdateStandardSite = async (
   const { pathname } = pub.url;
   const wellKnown = `${ opts?.baseDir || `` }/.well-known/site.standard.publication${ pathname === "/" ? `` : `${ pathname }/index.html` }`;
   const publicationUri = await pubUriFromFile( wellKnown );
+  const pubRkey = pub.rkey || CreateTID( pub.publishedAt.getTime(), 512 );
 
   const validateAndAddDocumentRkeys = ( docs ) => {
     for (const doc of docs) {
@@ -64,13 +65,13 @@ export const createOrUpdateStandardSite = async (
 
 <link 
   rel="site.standard.publication"
-  href="at://${ agent.did }/site.standard.publication/${ pub.rkey }">
+  href="at://${ agent.did }/site.standard.publication/${ pubRkey }">
 
 And add the following to each of your document pages using the corresponding TID values:
 
 <link 
   rel="site.standard.document"
-  href="at://${ agent.did }/site.standard.document/[TID]">
+  href="at://${ agent.did }/site.standard.document/[rkey]">
 `;
 
   if( !publicationUri ) {
@@ -79,7 +80,6 @@ And add the following to each of your document pages using the corresponding TID
       process.exit( 1 );
     }
     const rl = createInterface({ input: stdin, output: stdout });
-    const pubRkey = pub.rkey || CreateTID( pub.publishedAt.getTime(), 512 );
     const answer = await rl.question(`
 Generating a .well-known file.
 ${ chalk.bold( `Publication` ) }
