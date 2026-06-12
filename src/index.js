@@ -1,5 +1,5 @@
 import fs from "fs";
-import { readFile } from "node:fs/promises";
+import { mkdir, writeFile, readFile } from "node:fs/promises";
 import { dirname } from "node:path";
 import { stdin, stdout } from "node:process";
 import { createInterface } from "node:readline/promises";
@@ -39,7 +39,7 @@ export const createOrUpdateStandardSite = async (
   }
   const agent = new Agent( session );
   const { pathname } = pub.url;
-  const wellKnown = `${ opts?.baseFolder || `` }/.well-known/site.standard.publication${ pathname === "/" ? `` : `${ pathname }/index.html` }`;
+  const wellKnown = `${ opts?.baseDir || `` }/.well-known/site.standard.publication${ pathname === "/" ? `` : `${ pathname }/index.html` }`;
   const publicationUri = await pubUriFromFile( wellKnown );
 
   const validateAndAddDocumentRkeys = ( docs ) => {
@@ -79,12 +79,14 @@ And add the following to each of your document pages using the corresponding TID
       process.exit( 1 );
     }
     const rl = createInterface({ input: stdin, output: stdout });
+    const pubRkey = pub.rkey || CreateTID( pub.publishedAt.getTime(), 512 );
     const answer = await rl.question(`
+Generating a .well-known file.
 ${ chalk.bold( `Publication` ) }
-${ chalk.blue( pub.rkey ) } ${ pub.url }
-${ pub.publishedAt === undefined && console.log( `Without a \`publishedAt\`, the TID of your publication will change on every update.` ) }
-
+${ chalk.blue( pubRkey ) } ${ pub.url }
+${ pub.publishedAt === undefined ? `Without a \`publishedAt\`, the TID of your publication will change on every update.` : '' }
 ${ chalk.bold( `Documents` ) }
+${ newDocs.length === 0 ? chalk.dim( `None.` ) : `` }
 ${ newDocs.map( ( d ) => {
   return `${ chalk.blue( rkeyFromDateString( d.publishedAt ).toString() ) } ${ chalk.dim( pub.url ) }${ d.path }`;
 }).join( "\n" ) }
@@ -94,18 +96,18 @@ Are all the above paths correct? (y/n)
     rl.close();
     stdin.destroy();
     if( answer.toLowerCase() === "y" || answer.toLowerCase() === "yes" ) {
-      await fs.mkdir( dirname( wellKnown ), { recursive: true });
-      await fs.writeFile(wellKnown, `at://${agent.did}/site.standard.publication/${ pub.rkey }`);
+      await mkdir( dirname( wellKnown ), { recursive: true });
+      await writeFile(wellKnown, `at://${agent.did}/site.standard.publication/${ pub.rkey }`);
       console.log( `Successfully wrote ${ chalk.green( wellKnown ) }.` );
       console.log( `
-Next time you run this script, your publication and documents will be published to the Atmosphere, 
-and those records will be added or updated (if changed) on all subsequent runs.
+Next time you run this script, your publication and documents will be published to the 
+Atmosphere, and those records will be added or updated (if changed) on subsequent runs.
 ${ addLinkText }
 `);
     }
   } else {
     console.log( `.well-known file found at ${ wellKnown }` );
-    const tid = pub.rkey || ( pub.publishedAt ? CreateTID( pub.publishedAt.getTime(), 512 ) : GenerateTID() );
+    const tid = pub.rkey || CreateTID( pub.publishedAt.getTime(), 512 );
 
     await createOrUpdatePublication( agent, { ...pub, rkey: tid } );
     if( !pub.rkey && ! pub.publishedAt ) {
@@ -132,7 +134,7 @@ export const ATapult = async ( config, publicationRecord, documentRecords ) => {
     }
 
     await createOrUpdateStandardSite( session, publicationRecord, documentRecords, {
-      'baseFolder' : './src'
+      'baseDir' : config.baseDir || './'
     });
 
   } catch (error) {
